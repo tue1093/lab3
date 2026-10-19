@@ -10,13 +10,13 @@ public class FilmNow {
 
     private static final int TAMANHO = 100;
 
-    private String[] filmes; //uma representacao simploria da lista de filmes
+    private Filme[] filmes;
 
     /**
      * Cria o FilmNow.
      */
     public FilmNow() {
-        this.filmes = new String[TAMANHO];
+        this.filmes = new Filme[TAMANHO];
     }
 
     /**
@@ -24,8 +24,19 @@ public class FilmNow {
      * @return O array de filmes.
      */
     public String[] getFilmes() {
-        return this.filmes.clone();
+        String[] mostra = new String[filmes.length];
+
+        for (int i = 0; i < filmes.length; i++) {
+
+            if (filmes[i] != null) {
+
+                mostra[i]= filmes[i].toString() + "\n";
+
+            }
+        }
+        return mostra;
     }
+
 
     /**
      * Acessa os dados de um filme específico.
@@ -33,7 +44,7 @@ public class FilmNow {
      * @return Dados do filme. Null se não há filme na posição.
      */
     public String getFilme(int posicao) {
-        return filmes[posicao];
+        return filmes[posicao].toString();
     }
 
     /**
@@ -44,7 +55,7 @@ public class FilmNow {
      * @param local Local onde o filme pode ser assitido.
      */
     public void cadastraFilme(int posicao, String nome, String ano, String local) {
-        this.filmes[posicao] = nome;
+        this.filmes[posicao] = new Filme(nome,ano,local);
     }
 
 }
