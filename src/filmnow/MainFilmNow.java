@@ -49,7 +49,10 @@ public class MainFilmNow {
                         "(A)Adicionar filme\n" +
                         "(M)Mostrar todos\n" +
                         "(D)Detalhar filme\n" +
-                        "(S)air\n" +
+                        "(E)Exibir HotList\n" +
+                        "(H)Atribuir Hot\n" +
+                        "(R)Remover Hot\n" +
+                        "(S)Sair\n" +
                         "\n" +
                         "Opção> ");
         return scanner.next().toUpperCase();
@@ -76,6 +79,19 @@ public class MainFilmNow {
             case "S":
                 sai();
                 break;
+
+            case "E":
+                exibirHotList(fn);
+                break;
+
+            case "H":
+                atribuirHot(fn,scanner);
+                break;
+
+            case "R":
+                removerHot(fn,scanner);
+                break;
+
             default:
                 System.out.println("Opção inválida!");
         }
@@ -105,8 +121,8 @@ public class MainFilmNow {
     private static void detalharFilme(FilmNow fn, Scanner scanner) {
         System.out.print("\nQual filme> ");
         int posicao = scanner.nextInt();
-        String filme = fn.getFilme(posicao);
-        System.out.println("Dados do filme:\n" + filme);
+        Filme filme = fn.getFilme(posicao);
+        System.out.println("Dados do filme:\n" + filme.getStatus() + filme.toString());
     }
 
     /**
@@ -144,6 +160,33 @@ public class MainFilmNow {
     private static void sai() {
         System.out.println("\nVlw flw o/");
         System.exit(0);
+    }
+
+    private static void atribuirHot(FilmNow fn, Scanner scanner) {
+        System.out.print("\nFilme> ");
+        int posicao = scanner.nextInt();
+        System.out.print("\nPosicao> ");
+        int posicao2 = scanner.nextInt();
+        System.out.println(fn.atribuirHot(posicao2));
+
+    }
+
+    private static void exibirHotList(FilmNow fn) {
+        String[] filmes = fn.getFilmesHot();
+        for (int i = 0; i < filmes.length; i++) {
+            if (filmes[i] != null) {
+                System.out.println(formataFilme(i+1, filmes[i]));
+            }
+
+
+        }
+    }
+
+    public static void removerHot(FilmNow fn, Scanner scanner){
+
+        System.out.print("\nPosicao> ");
+        int posicao = scanner.nextInt();
+        fn.removerHot(posicao);
     }
 
     /**

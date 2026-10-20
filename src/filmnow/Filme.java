@@ -31,7 +31,7 @@ public class Filme {
     }
 
     public void setStatusHot(){
-        this.status = "Hot";
+        this.status = "\uD83D\uDD25 ";
     }
 
     public void removerStatusHot(){
